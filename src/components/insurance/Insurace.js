@@ -1,5 +1,4 @@
 import React from 'react';
-import './Insurance.scss';
 import Table from '../table/Table';
 
 const Insurance = () => {

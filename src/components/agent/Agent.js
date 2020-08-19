@@ -1,5 +1,4 @@
 import React from 'react';
-import './Agent.scss';
 import Table from '../table/Table';
 
 const Agent = () => {
