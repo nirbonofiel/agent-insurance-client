@@ -4,13 +4,31 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import {createStore,applyMiddleware,compose,combineReducers} from 'redux';
+import agentInsuraceReducer from './store/reducers/agentInsurace';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+
+const composeEnhancers = process.env.NODE_ENV === 'development' ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__: null || compose;
+
+const rootReducer = combineReducers({
+  agentInsurace: agentInsuraceReducer
+})
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
