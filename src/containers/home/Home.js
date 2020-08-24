@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Home.scss'
 import {NavLink} from 'react-router-dom';
-
+import {useDispatch} from 'react-redux';
+import {getAgents, getInsurances, getInsurancesForAgent} from '../../store/actions/agentInsurace'
 
 const Home = (props) => {
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getAgents());
+        dispatch(getInsurances());
+        dispatch(getInsurancesForAgent());
+    },[dispatch])
     return (
         <div>
             <ul className="nav justify-content-center nav-container">

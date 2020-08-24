@@ -2,7 +2,18 @@ import React from 'react';
 import './Table.scss';
 
 const Table = (props) => {
-    console.log(props.thead)
+    let tbody = null;
+    switch(props.type){
+        case 'agent':
+            tbody = props.tbody.map(agent=>
+                <tr key={agent.id}>
+                    <td>{agent.id}</td>
+                    <td>{agent.full_name}</td>
+                    <td>{agent.email}</td>
+                    <td>{agent.company_name}</td>
+                </tr>)
+                break;
+    }
     return (
         <div className="container table-container">
             <table className="table">
@@ -14,21 +25,7 @@ const Table = (props) => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                </tr>
+                {tbody}
             </tbody>
             </table>
         </div>
